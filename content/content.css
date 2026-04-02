@@ -1,0 +1,212 @@
+/* YouTube Jumpscare Detector — injected styles */
+
+:root {
+  --jsd-red: rgba(220, 50, 50, 0.6);
+  --jsd-blue: rgba(50, 120, 220, 0.6);
+  --jsd-purple: rgba(140, 50, 220, 0.6);
+}
+
+/* ── Overlay Panel ── */
+
+.jsd-panel {
+  display: block;
+  font-family: "Roboto", Arial, sans-serif;
+  font-size: 13px;
+  color: #e8e8e8;
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+
+.jsd-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  background: #222;
+  border-bottom: 1px solid #333;
+}
+
+.jsd-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.jsd-toggle {
+  font-family: inherit;
+  font-size: 12px;
+  color: #aaa;
+  background: #333;
+  border: 1px solid #444;
+  border-radius: 4px;
+  padding: 3px 10px;
+  cursor: pointer;
+}
+
+.jsd-toggle:hover {
+  background: #444;
+  color: #fff;
+}
+
+.jsd-body {
+  padding: 8px 0;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.jsd-empty {
+  padding: 12px 14px;
+  color: #888;
+  text-align: center;
+}
+
+.jsd-loading {
+  animation: jsd-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes jsd-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* ── Entry List ── */
+
+.jsd-list {
+  display: block;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.jsd-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 6px 14px;
+  cursor: default;
+}
+
+.jsd-item:hover {
+  background: #252525;
+}
+
+.jsd-badge {
+  flex-shrink: 0;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 5px;
+  border-radius: 3px;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.jsd-badge-heatmap {
+  background: rgba(220, 50, 50, 0.8);
+}
+
+.jsd-badge-comment {
+  background: rgba(50, 120, 220, 0.8);
+}
+
+.jsd-badge-both {
+  background: rgba(140, 50, 220, 0.8);
+}
+
+.jsd-timestamp {
+  font-family: monospace;
+  font-size: 13px;
+  color: #3ea6ff;
+  cursor: pointer;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.jsd-timestamp:hover {
+  text-decoration: underline;
+}
+
+.jsd-info {
+  font-size: 12px;
+  color: #888;
+  overflow: hidden;
+}
+
+.jsd-snippet {
+  display: block;
+  font-size: 11px;
+  color: #777;
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+
+/* ── Live Warning Toast (on video) ── */
+
+.jsd-toast {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  background: rgba(180, 30, 30, 0.92);
+  border: 1px solid rgba(255, 80, 80, 0.5);
+  border-radius: 8px;
+  color: #fff;
+  font-family: "Roboto", Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  animation: jsd-slide-in 0.3s ease-out;
+  transition: opacity 0.5s ease;
+}
+
+.jsd-toast-fade {
+  opacity: 0;
+}
+
+.jsd-toast-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  font-size: 16px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.jsd-toast-text {
+  white-space: nowrap;
+}
+
+@keyframes jsd-slide-in {
+  from {
+    transform: translateX(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* ── Timeline Markers ── */
+
+.jsd-marker {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  z-index: 40;
+  pointer-events: none;
+  border-radius: 1px;
+}

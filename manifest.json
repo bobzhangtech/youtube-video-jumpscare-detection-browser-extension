@@ -1,0 +1,37 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube Jumpscare Detector",
+  "version": "1.0",
+  "description": "Detects potential jumpscares by analyzing YouTube's seek bar heatmap and viewer comments.",
+
+  "permissions": [],
+
+  "host_permissions": [
+    "*://*.youtube.com/*"
+  ],
+
+  "background": {
+    "scripts": ["background.js"]
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["*://*.youtube.com/*"],
+      "js": ["content/page-bridge.js", "content/heatmap.js", "content/comments.js", "content/ui.js", "content/content.js"],
+      "css": ["content/content.css"],
+      "run_at": "document_idle"
+    }
+  ],
+
+  "icons": {
+    "48": "icons/icon-48.png",
+    "96": "icons/icon-96.png"
+  },
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "jumpscare-detector@personal",
+      "strict_min_version": "109.0"
+    }
+  }
+}
