@@ -1,37 +1,51 @@
 {
   "manifest_version": 3,
-  "name": "YouTube Jumpscare Detector",
+  "name": "YouTube Video Jumpscare Detector",
   "version": "1.0",
-  "description": "Detects potential jumpscares by analyzing YouTube's seek bar heatmap and viewer comments.",
-
+  "description": "Detects potential jumpscares in horror game playthrough videos by analyzing YouTube's seek bar heatmap and viewer comments.",
   "permissions": [],
-
   "host_permissions": [
     "*://*.youtube.com/*"
   ],
-
   "background": {
-    "scripts": ["background.js"]
+    "scripts": [
+      "background.js"
+    ]
   },
-
   "content_scripts": [
     {
-      "matches": ["*://*.youtube.com/*"],
-      "js": ["content/page-bridge.js", "content/heatmap.js", "content/comments.js", "content/ui.js", "content/content.js"],
-      "css": ["content/content.css"],
+      "matches": [
+        "*://*.youtube.com/*"
+      ],
+      "js": [
+        "content/page-bridge.js",
+        "content/heatmap.js",
+        "content/comments.js",
+        "content/ui.js",
+        "content/content.js"
+      ],
+      "css": [
+        "content/content.css"
+      ],
       "run_at": "document_idle"
     }
   ],
-
   "icons": {
     "48": "icons/icon-48.png",
     "96": "icons/icon-96.png"
   },
-
   "browser_specific_settings": {
     "gecko": {
-      "id": "jumpscare-detector@personal",
-      "strict_min_version": "109.0"
+      "id": "youtube-video-jumpscare-detector@firefox",
+      "strict_min_version": "142.0",
+      "data_collection_permissions": {
+        "required": [
+          "none"
+        ],
+        "optional": [
+          "technicalAndInteraction"
+        ]
+      }
     }
   }
 }
